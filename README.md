@@ -20,8 +20,6 @@ cd server -> npm run serve
 -   React-Redux, Redux Toolkit
 -   NodeJS, Express, MongoDB
 
-![Screenshot](./screenshots/screen-1.png)
-
 # Реализовано
 
 ![Screenshot](./screenshots/1.png)
@@ -30,5 +28,3 @@ cd server -> npm run serve
 ![Screenshot](./screenshots/4.png)
 ![Screenshot](./screenshots/5.png)
 ![Screenshot](./screenshots/6.png)
-![Screenshot](./screenshots/7.png)
-![Screenshot](./screenshots/8.png)
