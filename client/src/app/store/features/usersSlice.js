@@ -4,24 +4,23 @@ import {
     fetchDeleteUser,
     fetchUsersService
 } from "../../services/userServices";
-import { getAllChats } from "./messageSlice";
 import { logout } from "./userSlice";
 
 const initialState = localStorageService.getAccessToken()
     ? {
-          users: [],
-          isLoading: true,
-          isLoggedIn: true,
-          auth: { userId: localStorageService.getUserId() },
-          usersOnline: []
-      }
+        users: [],
+        isLoading: true,
+        isLoggedIn: true,
+        auth: { userId: localStorageService.getUserId() },
+        usersOnline: []
+    }
     : {
-          users: [],
-          isLoading: true,
-          isLoggedIn: false,
-          auth: { userId: null },
-          usersOnline: []
-      };
+        users: [],
+        isLoading: true,
+        isLoggedIn: false,
+        auth: { userId: null },
+        usersOnline: []
+    };
 
 export const getUsers = createAsyncThunk(
     "users/getUsers",
@@ -32,8 +31,6 @@ export const getUsers = createAsyncThunk(
         const data = await customFetch(fetchUsersService);
         if (!data) return rejectWithValue();
         const { users } = data;
-        if (!getState().user.isGuest)
-            dispatch(getAllChats({ customFetch, users }));
         return fulfillWithValue(users);
     }
 );
@@ -86,8 +83,8 @@ export const getCurrentUserData = () => (state) => {
         console.log(state.users.users, state.users.auth.userId);
         return state.users.users
             ? state.users.users.find(
-                  (user) => user._id === state.users.auth.userId
-              )
+                (user) => user._id === state.users.auth.userId
+            )
             : null;
     }
 };

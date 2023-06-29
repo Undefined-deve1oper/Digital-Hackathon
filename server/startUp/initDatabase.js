@@ -1,12 +1,11 @@
-const Article = require("../models/Article");
+// const Entity = require("../models/Entity");
+// const entetyMockData = require("../mock/entetys.json");
 
-const articleMockData = require("../mock/articles.json");
-
-module.exports = async () => {
-    const article = await Article.find();
-    await createInitialEntity(Article, articleMockData);
-    console.log("added article in mongoDB");
-};
+// module.exports = async () => {
+//     const entety = await Entity.find();
+//     await createInitialEntity(Entity, entetyMockData);
+//     console.log("added entety in mongoDB");
+// };
 
 async function createInitialEntity(Model, data) {
     await Model.collection.drop();

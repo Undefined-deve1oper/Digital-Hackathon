@@ -10,7 +10,6 @@ import {
     mailIcon
 } from "../../../assets";
 import useFetch from "../../../hooks/useFetch";
-import { createChat } from "../../../store/features/messageSlice";
 import { setIsLoading, showModal } from "../../../store/features/modalSlice";
 import { logout } from "../../../store/features/userSlice";
 import getDateString from "../../../utils/getDateString";
@@ -36,18 +35,6 @@ const ProfileCard = ({ id, isOwnProfile }) => {
     createdAt = `Joined on ${getDateString(createdAt)}`;
     dob = getDateString(dob);
 
-    const sendMessage = async () => {
-        if (isGuest)
-            return dispatch(
-                showModal({ msg: "Войдите в аккаунт или зарегистрируйтесь!!" })
-            );
-        dispatch(setIsLoading(true));
-        dispatch(createChat({ customFetch, id })).then(() => {
-            if (window.innerWidth < 801) navigate("/chat/messenger");
-            else navigate("/chat");
-            dispatch(setIsLoading(false));
-        });
-    };
 
     const hideUploading = () => {
         setIsUploading(false);
@@ -106,23 +93,13 @@ const ProfileCard = ({ id, isOwnProfile }) => {
                     <h3>{dob}</h3>
                 </div>
             </article>
-            {isOwnProfile ? (
+            {isOwnProfile && (
                 <div className="btn-group">
                     <button onClick={() => dispatch(logout())}>Выйти</button>
                     <button onClick={() => setIsEditing(true)}>
                         Изменить профиль
                     </button>
                 </div>
-            ) : (
-                <div className="btn-group">
-                    <button onClick={sendMessage}>Сообщения</button>
-                    <button disabled>Добавить в друзья</button>
-                </div>
-            )}
-            {user?.role === "ADMIN" && (
-                <NavLink to="/admin" className={"admin-btn"}>
-                    Панель администратора
-                </NavLink>
             )}
         </section>
     );

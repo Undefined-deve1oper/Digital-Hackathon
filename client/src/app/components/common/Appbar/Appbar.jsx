@@ -2,14 +2,12 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import {
-    chatIcon,
     closeIcon,
     dp,
     hamburger,
     homeIcon,
     searchIcon
 } from "../../../assets";
-import navConfig from "../../../config/navigation-config.json";
 import useFetch from "../../../hooks/useFetch";
 import { fetchPostsService } from "../../../services/postServices";
 import { fetchUsersService } from "../../../services/userServices";
@@ -19,7 +17,6 @@ import {
 } from "../../../store/features/modalSlice";
 import { logout } from "../../../store/features/userSlice";
 import SearchResults from "../../ui/SearchResults/SearchResults";
-import NavList from "../NavList/NavList";
 import "./appbar.css";
 
 const Appbar = () => {
@@ -74,7 +71,6 @@ const Appbar = () => {
             <Link to="/">
                 <img src={homeIcon} alt="home" className="home-icon" />
             </Link>
-            <NavList routes={navConfig} />
             <form onSubmit={searchHandler} className="searchform">
                 <button type="submit" aria-label="search">
                     <img src={searchIcon} alt="search" />
@@ -106,9 +102,6 @@ const Appbar = () => {
                                 className="appbar__profile__dp"
                                 title="profile"
                             />
-                        </Link>
-                        <Link to="/chat">
-                            <img src={chatIcon} alt="chat" className="chat" />
                         </Link>
                     </>
                 )}
